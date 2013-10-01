@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HighSchoolMVCModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="HighSchoolMVCModelStoreContainer">
+    <EntitySet Name="Course" EntityType="HighSchoolMVCModel.Store.Course" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CourseStudent" EntityType="HighSchoolMVCModel.Store.CourseStudent" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Student" EntityType="HighSchoolMVCModel.Store.Student" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Teacher" EntityType="HighSchoolMVCModel.Store.Teacher" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Course_Teacher" Association="HighSchoolMVCModel.Store.FK_Course_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Course" EntitySet="Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseStudent_Course" Association="HighSchoolMVCModel.Store.FK_CourseStudent_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="CourseStudent" EntitySet="CourseStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseStudent_Student" Association="HighSchoolMVCModel.Store.FK_CourseStudent_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="CourseStudent" EntitySet="CourseStudent" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TeacherId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Photo" Type="nvarchar" MaxLength="255" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Deleted" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CourseStudent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="CourseId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Photo" Type="nvarchar" MaxLength="255" />
+    <Property Name="Birthdate" Type="datetime" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Photo" Type="nvarchar" MaxLength="255" />
+    <Property Name="Birthdate" Type="datetime" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Course_Teacher">
+    <End Role="Teacher" Type="HighSchoolMVCModel.Store.Teacher" Multiplicity="1" />
+    <End Role="Course" Type="HighSchoolMVCModel.Store.Course" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseStudent_Course">
+    <End Role="Course" Type="HighSchoolMVCModel.Store.Course" Multiplicity="1" />
+    <End Role="CourseStudent" Type="HighSchoolMVCModel.Store.CourseStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CourseStudent">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseStudent_Student">
+    <End Role="Student" Type="HighSchoolMVCModel.Store.Student" Multiplicity="1" />
+    <End Role="CourseStudent" Type="HighSchoolMVCModel.Store.CourseStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CourseStudent">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
