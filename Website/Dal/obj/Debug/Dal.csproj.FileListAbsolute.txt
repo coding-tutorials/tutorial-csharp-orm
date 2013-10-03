@@ -1,8 +1,0 @@
-C:\Projects\HighSchoolMVC\Dal\bin\Debug\Dal.dll.config
-C:\Projects\HighSchoolMVC\Dal\bin\Debug\Dal.dll
-C:\Projects\HighSchoolMVC\Dal\bin\Debug\Dal.pdb
-C:\Projects\HighSchoolMVC\Dal\bin\Debug\EntityFramework.dll
-C:\Projects\HighSchoolMVC\Dal\bin\Debug\EntityFramework.xml
-C:\Projects\HighSchoolMVC\Dal\obj\Debug\Dal.csprojResolveAssemblyReference.cache
-C:\Projects\HighSchoolMVC\Dal\obj\Debug\Dal.dll
-C:\Projects\HighSchoolMVC\Dal\obj\Debug\Dal.pdb
