@@ -29,5 +29,6 @@ namespace Dal.EntityFramework
         public DbSet<CourseStudent> CourseStudent { get; set; }
         public DbSet<Student> Student { get; set; }
         public DbSet<Teacher> Teacher { get; set; }
+        public DbSet<User> User { get; set; }
     }
 }

@@ -20,3 +20,5 @@ C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Repository\bin\Debug\EntityFramew
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Repository\obj\Debug\Repository.csprojResolveAssemblyReference.cache
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Repository\obj\Debug\Repository.dll
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Repository\obj\Debug\Repository.pdb
+C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Repository\bin\Debug\Bll.dll
+C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Repository\bin\Debug\Bll.pdb

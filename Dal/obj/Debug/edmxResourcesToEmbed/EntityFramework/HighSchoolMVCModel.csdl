@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="HighSchoolMVCModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-  <EntityContainer Name="HighSchoolMVCEntities" annotation:LazyLoadingEnabled="true">
+<Schema Namespace="HighSchoolMVCModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HighSchoolMVCEntities" p1:LazyLoadingEnabled="true">
     <EntitySet Name="Course" EntityType="HighSchoolMVCModel.Course" />
     <EntitySet Name="CourseStudent" EntityType="HighSchoolMVCModel.CourseStudent" />
     <EntitySet Name="Student" EntityType="HighSchoolMVCModel.Student" />
     <EntitySet Name="Teacher" EntityType="HighSchoolMVCModel.Teacher" />
+    <EntitySet Name="User" EntityType="HighSchoolMVCModel.User" />
     <AssociationSet Name="FK_Course_Teacher" Association="HighSchoolMVCModel.FK_Course_Teacher">
       <End Role="Teacher" EntitySet="Teacher" />
       <End Role="Course" EntitySet="Course" />
@@ -22,7 +23,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="TeacherId" Type="Int32" Nullable="false" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
     <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
@@ -37,7 +38,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="StudentId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Course" Relationship="HighSchoolMVCModel.FK_CourseStudent_Course" FromRole="CourseStudent" ToRole="Course" />
     <NavigationProperty Name="Student" Relationship="HighSchoolMVCModel.FK_CourseStudent_Student" FromRole="CourseStudent" ToRole="Student" />
@@ -46,7 +47,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
     <Property Name="Photo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
     <Property Name="Birthdate" Type="DateTime" Precision="3" />
@@ -57,13 +58,23 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
     <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="Photo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
     <Property Name="Birthdate" Type="DateTime" Precision="3" />
     <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Course" Relationship="HighSchoolMVCModel.FK_Course_Teacher" FromRole="Teacher" ToRole="Course" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="Image" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <Association Name="FK_Course_Teacher">
     <End Role="Teacher" Type="HighSchoolMVCModel.Teacher" Multiplicity="1" />

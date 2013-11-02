@@ -1,0 +1,4 @@
+C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Bll\bin\Debug\Bll.dll
+C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Bll\bin\Debug\Bll.pdb
+C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Bll\obj\Debug\Bll.dll
+C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Bll\obj\Debug\Bll.pdb

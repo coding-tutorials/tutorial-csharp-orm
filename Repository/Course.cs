@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
+    /*
     public class Course : Repository<Dal.Course,Model.Course>
     {
         private Dal.Course dalCourse = new Dal.Course();
@@ -29,5 +30,5 @@ namespace Repository
         {
             throw new NotImplementedException();
         }
-    }
+    }*/
 }

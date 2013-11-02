@@ -17,5 +17,30 @@ namespace Repository
         {
             return 0;
         }
+
+        private Model.User DalToModel(Dal.EntityFramework.User dalModel)
+        {
+            return new Model.User()
+            {
+                Id = dalModel.Id,
+                Login = dalModel.Login,
+                Password = dalModel.Password,
+                Image = dalModel.Image,
+                Created = dalModel.Created
+            };
+        }
+
+        private Dal.EntityFramework.User DalToModel(Model.User model)
+        {
+            return new Dal.EntityFramework.User()
+            {
+                Id = model.Id,
+                Login = model.Login,
+                Password = model.Password,
+                Image = model.Image,
+                Created = model.Created
+            };
+        }
+
     }
 }
