@@ -12,17 +12,17 @@ namespace Repository
 
         public Model.User Get(int id)
         {
-            return this.DalToModel(DalUser.Get(id));
+            return null; // this.DalToModel(DalUser.Get(id));
         }
 
         public Model.User Get(String login, String password)
         {
-            return this.DalToModel(DalUser.Get(login, password));
+            return null; // this.DalToModel(DalUser.Get(login, password));
         }
 
         public int Save(Model.User user)
         {
-            return this.DalUser.Save(this.ModelToDal(user));
+            return 0; // this.DalUser.Save(this.ModelToDal(user));
         }
 
         private Model.User DalToModel(Dal.EntityFramework.User dalModel)
@@ -30,9 +30,8 @@ namespace Repository
             return new Model.User()
             {
                 Id = dalModel.Id,
-                Login = dalModel.Login,
+                Email = dalModel.Email,
                 Password = dalModel.Password,
-                Image = dalModel.Image,
                 Created = dalModel.Created
             };
         }
@@ -42,9 +41,8 @@ namespace Repository
             return new Dal.EntityFramework.User()
             {
                 Id = model.Id,
-                Login = model.Login,
+                Email = model.Email,
                 Password = model.Password,
-                Image = model.Image,
                 Created = model.Created
             };
         }

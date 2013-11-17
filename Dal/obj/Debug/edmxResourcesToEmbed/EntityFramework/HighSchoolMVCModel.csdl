@@ -3,7 +3,6 @@
   <EntityContainer Name="HighSchoolMVCEntities" p1:LazyLoadingEnabled="true">
     <EntitySet Name="Course" EntityType="HighSchoolMVCModel.Course" />
     <EntitySet Name="CourseStudent" EntityType="HighSchoolMVCModel.CourseStudent" />
-    <EntitySet Name="Student" EntityType="HighSchoolMVCModel.Student" />
     <EntitySet Name="Teacher" EntityType="HighSchoolMVCModel.Teacher" />
     <EntitySet Name="User" EntityType="HighSchoolMVCModel.User" />
     <AssociationSet Name="FK_Course_Teacher" Association="HighSchoolMVCModel.FK_Course_Teacher">
@@ -14,6 +13,7 @@
       <End Role="Course" EntitySet="Course" />
       <End Role="CourseStudent" EntitySet="CourseStudent" />
     </AssociationSet>
+    <EntitySet Name="Student" EntityType="HighSchoolMVCModel.Student" />
     <AssociationSet Name="FK_CourseStudent_Student" Association="HighSchoolMVCModel.FK_CourseStudent_Student">
       <End Role="Student" EntitySet="Student" />
       <End Role="CourseStudent" EntitySet="CourseStudent" />
@@ -42,17 +42,6 @@
     <Property Name="StudentId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Course" Relationship="HighSchoolMVCModel.FK_CourseStudent_Course" FromRole="CourseStudent" ToRole="Course" />
     <NavigationProperty Name="Student" Relationship="HighSchoolMVCModel.FK_CourseStudent_Student" FromRole="CourseStudent" ToRole="Student" />
-  </EntityType>
-  <EntityType Name="Student">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
-    <Property Name="Photo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-    <Property Name="Birthdate" Type="DateTime" Precision="3" />
-    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="CourseStudent" Relationship="HighSchoolMVCModel.FK_CourseStudent_Student" FromRole="Student" ToRole="CourseStudent" />
   </EntityType>
   <EntityType Name="Teacher">
     <Key>
@@ -100,9 +89,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Photo" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CourseStudent" Relationship="HighSchoolMVCModel.FK_CourseStudent_Student" FromRole="Student" ToRole="CourseStudent" />
+  </EntityType>
   <Association Name="FK_CourseStudent_Student">
-    <End Role="Student" Type="HighSchoolMVCModel.Student" Multiplicity="1" />
-    <End Role="CourseStudent" Type="HighSchoolMVCModel.CourseStudent" Multiplicity="*" />
+    <End Type="HighSchoolMVCModel.Student" Role="Student" Multiplicity="1" />
+    <End Type="HighSchoolMVCModel.CourseStudent" Role="CourseStudent" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Student">
         <PropertyRef Name="Id" />

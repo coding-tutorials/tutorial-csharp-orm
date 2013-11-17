@@ -1,15 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug\Test.dll" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2013-11-01" time="16:03:54">
+<test-results name="C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug\Test.dll" total="1" errors="1" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2013-11-02" time="01:01:19">
   <environment nunit-version="2.6.3.13283" clr-version="4.0.30319.17929" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug" machine-name="WAGNER-PC" user="wagner" user-domain="Wagner-PC" />
   <culture-info current-culture="en-GB" current-uiculture="en-GB" />
-  <test-suite type="Assembly" name="C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug\Test.dll" executed="True" result="Success" success="True" time="4.208" asserts="0">
+  <test-suite type="Assembly" name="C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug\Test.dll" executed="True" result="Failure" success="False" time="22.889" asserts="0">
     <results>
-      <test-suite type="Namespace" name="Test" executed="True" result="Success" success="True" time="4.202" asserts="0">
+      <test-suite type="Namespace" name="Test" executed="True" result="Failure" success="False" time="22.867" asserts="0">
         <results>
-          <test-suite type="TestFixture" name="User" executed="True" result="Success" success="True" time="4.202" asserts="0">
+          <test-suite type="TestFixture" name="User" executed="True" result="Failure" success="False" time="22.846" asserts="0">
             <results>
-              <test-case name="Test.User.Insert" executed="True" result="Success" success="True" time="4.195" asserts="1" />
+              <test-case name="Test.User.Database" executed="True" result="Error" success="False" time="22.782" asserts="1">
+                <failure>
+                  <message><![CDATA[System.Data.Entity.Infrastructure.DbUpdateException : An error occurred while updating the entries. See the inner exception for details.
+  ----> System.Data.UpdateException : An error occurred while updating the entries. See the inner exception for details.
+  ----> System.Data.SqlClient.SqlException : Cannot insert the value NULL into column 'Password', table 'HighSchoolMVC.dbo.User'; column does not allow nulls. UPDATE fails.
+The statement has been terminated.]]></message>
+                  <stack-trace><![CDATA[at System.Data.Entity.Internal.InternalContext.SaveChanges()
+at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+at System.Data.Entity.DbContext.SaveChanges()
+at Dal.User.Save(User user) in c:\Users\wagner\Documents\GitHub\HighSchoolMVC\Dal\User.cs:line 49
+at Repository.User.Save(User user) in c:\Users\wagner\Documents\GitHub\HighSchoolMVC\Repository\User.cs:line 25
+at Test.User.Database() in c:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\User.cs:line 38
+--UpdateException
+at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
+at System.Data.EntityClient.EntityAdapter.Update(IEntityStateManager entityCache)
+at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+at System.Data.Entity.Internal.InternalContext.SaveChanges()
+--SqlException
+at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite)
+at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+at System.Data.Mapping.Update.Internal.DynamicUpdateCommand.Execute(UpdateTranslator translator, EntityConnection connection, Dictionary`2 identifierValues, List`1 generatedValues)
+at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
+]]></stack-trace>
+                </failure>
+              </test-case>
             </results>
           </test-suite>
         </results>

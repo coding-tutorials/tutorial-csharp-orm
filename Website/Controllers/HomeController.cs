@@ -13,6 +13,11 @@ namespace HighSchoolMVC.Controllers
 
         public ActionResult Index()
         {
+            Bll.Course bllCourse = new Bll.Course();
+            List<Model.Course> courseList = bllCourse.FindLatest(8);
+
+            ViewBag.CourseList = courseList;
+
             return View();
         }
 

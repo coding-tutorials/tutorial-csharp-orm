@@ -23,17 +23,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Student">
-      <EntityTypeMapping TypeName="HighSchoolMVCModel.Student">
-        <MappingFragment StoreEntitySet="Student">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Photo" ColumnName="Photo" />
-          <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
-          <ScalarProperty Name="Created" ColumnName="Created" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Teacher">
       <EntityTypeMapping TypeName="HighSchoolMVCModel.Teacher">
         <MappingFragment StoreEntitySet="Teacher">
@@ -54,6 +43,16 @@
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Created" ColumnName="Created" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student">
+      <EntityTypeMapping TypeName="HighSchoolMVCModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

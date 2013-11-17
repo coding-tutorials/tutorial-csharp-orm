@@ -24,3 +24,11 @@ C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Website\bin\System.Web.WebPages.R
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Website\obj\Debug\Website.csprojResolveAssemblyReference.cache
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Website\obj\Debug\Website.dll
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Website\obj\Debug\Website.pdb
+C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Website\bin\Bll.dll
+C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Website\bin\Model.dll
+C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Website\bin\Dal.dll
+C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Website\bin\EntityFramework.dll
+C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Website\bin\Bll.pdb
+C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Website\bin\Model.pdb
+C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Website\bin\Dal.pdb
+C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Website\bin\EntityFramework.xml

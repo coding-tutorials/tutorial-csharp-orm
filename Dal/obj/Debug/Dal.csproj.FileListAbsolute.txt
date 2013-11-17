@@ -1,10 +1,8 @@
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Dal\bin\Debug\Dal.dll.config
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Dal\bin\Debug\Dal.dll
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Dal\bin\Debug\Dal.pdb
-C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Dal\bin\Debug\Bll.dll
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Dal\bin\Debug\EntityFramework.dll
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Dal\bin\Debug\Model.dll
-C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Dal\bin\Debug\Bll.pdb
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Dal\bin\Debug\Model.pdb
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Dal\bin\Debug\EntityFramework.xml
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Dal\obj\Debug\Dal.csprojResolveAssemblyReference.cache

@@ -46,59 +46,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="User.cs" />
+    <Compile Include="Course.cs" />
     <Compile Include="EntityFramework\Course.cs">
-      <DependentUpon>HighSchoolMVCModel.tt</DependentUpon>
+      <DependentUpon>HighSchoolMVCEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityFramework\CourseStudent.cs">
-      <DependentUpon>HighSchoolMVCModel.tt</DependentUpon>
+      <DependentUpon>HighSchoolMVCEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityFramework\HighSchoolMVCModel.Context.cs">
+    <Compile Include="EntityFramework\HighSchoolMVCEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HighSchoolMVCModel.Context.tt</DependentUpon>
+      <DependentUpon>HighSchoolMVCEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityFramework\HighSchoolMVCModel.cs">
+    <Compile Include="EntityFramework\HighSchoolMVCEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HighSchoolMVCModel.tt</DependentUpon>
+      <DependentUpon>HighSchoolMVCEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityFramework\HighSchoolMVCModel.Designer.cs">
+    <Compile Include="EntityFramework\HighSchoolMVCEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HighSchoolMVCModel.edmx</DependentUpon>
+      <DependentUpon>HighSchoolMVCEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="EntityFramework\Student.cs">
-      <DependentUpon>HighSchoolMVCModel.tt</DependentUpon>
+      <DependentUpon>HighSchoolMVCEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityFramework\Teacher.cs">
-      <DependentUpon>HighSchoolMVCModel.tt</DependentUpon>
+      <DependentUpon>HighSchoolMVCEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityFramework\User.cs">
-      <DependentUpon>HighSchoolMVCModel.tt</DependentUpon>
+      <DependentUpon>HighSchoolMVCEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="IRepository.cs" />
+    <Compile Include="Student.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="EntityFramework\HighSchoolMVCModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HighSchoolMVCModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
-    <None Include="EntityFramework\HighSchoolMVCModel.Context.tt">
+    <EntityDeploy Include="EntityFramework\HighSchoolMVCEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HighSchoolMVCEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EntityFramework\HighSchoolMVCEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HighSchoolMVCModel.edmx</DependentUpon>
-      <LastGenOutput>HighSchoolMVCModel.Context.cs</LastGenOutput>
+      <DependentUpon>HighSchoolMVCEntities.edmx</DependentUpon>
+      <LastGenOutput>HighSchoolMVCEntities.Context.cs</LastGenOutput>
     </None>
-    <None Include="EntityFramework\HighSchoolMVCModel.edmx.diagram">
-      <DependentUpon>HighSchoolMVCModel.edmx</DependentUpon>
+    <None Include="EntityFramework\HighSchoolMVCEntities.edmx.diagram">
+      <DependentUpon>HighSchoolMVCEntities.edmx</DependentUpon>
     </None>
-    <None Include="EntityFramework\HighSchoolMVCModel.tt">
+    <None Include="EntityFramework\HighSchoolMVCEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HighSchoolMVCModel.edmx</DependentUpon>
-      <LastGenOutput>HighSchoolMVCModel.cs</LastGenOutput>
+      <DependentUpon>HighSchoolMVCEntities.edmx</DependentUpon>
+      <LastGenOutput>HighSchoolMVCEntities.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -106,15 +107,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bll\Bll.csproj">
-      <Project>{6fc83ed7-9bfa-4098-bb1a-f3f299ec3c6e}</Project>
-      <Name>Bll</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{cefd0044-5cec-4ebe-a321-b2061875e804}</Project>
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

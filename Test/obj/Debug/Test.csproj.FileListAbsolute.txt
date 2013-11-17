@@ -2,11 +2,9 @@ C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug\Test.dll
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug\Test.pdb
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug\Model.dll
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug\nunit.framework.dll
-C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug\Repository.dll
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug\Dal.dll
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug\EntityFramework.dll
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug\Model.pdb
-C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug\Repository.pdb
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug\nunit.framework.xml
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug\Dal.pdb
 C:\Users\wagner\Documents\GitHub\HighSchoolMVC\Test\bin\Debug\EntityFramework.xml

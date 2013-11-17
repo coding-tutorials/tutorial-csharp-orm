@@ -58,10 +58,6 @@
       <Project>{cefd0044-5cec-4ebe-a321-b2061875e804}</Project>
       <Name>Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Repository\Repository.csproj">
-      <Project>{363232a0-31cd-485b-b568-6e268e3b91f4}</Project>
-      <Name>Repository</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

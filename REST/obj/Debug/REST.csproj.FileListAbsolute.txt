@@ -1,5 +1,0 @@
-C:\Users\wagner\Documents\GitHub\HighSchoolMVC\REST\bin\REST.dll
-C:\Users\wagner\Documents\GitHub\HighSchoolMVC\REST\bin\REST.pdb
-C:\Users\wagner\Documents\GitHub\HighSchoolMVC\REST\obj\Debug\REST.csprojResolveAssemblyReference.cache
-C:\Users\wagner\Documents\GitHub\HighSchoolMVC\REST\obj\Debug\REST.dll
-C:\Users\wagner\Documents\GitHub\HighSchoolMVC\REST\obj\Debug\REST.pdb

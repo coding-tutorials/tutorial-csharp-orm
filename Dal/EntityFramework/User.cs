@@ -14,10 +14,19 @@ namespace Dal.EntityFramework
     
     public partial class User
     {
+        public User()
+        {
+            this.Student = new HashSet<Student>();
+            this.Teacher = new HashSet<Teacher>();
+        }
+    
         public int Id { get; set; }
-        public string Login { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
-        public string Image { get; set; }
         public System.DateTime Created { get; set; }
+        public Nullable<System.DateTime> Deleted { get; set; }
+    
+        public virtual ICollection<Student> Student { get; set; }
+        public virtual ICollection<Teacher> Teacher { get; set; }
     }
 }

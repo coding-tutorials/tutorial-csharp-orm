@@ -9,7 +9,7 @@ namespace Dal
     public class User
     {
        
-
+        /*
         public Dal.EntityFramework.User Get(int id)
         {
             Dal.EntityFramework.HighSchoolMVCEntities DatabaseContext = new EntityFramework.HighSchoolMVCEntities();
@@ -32,18 +32,26 @@ namespace Dal
 
             if (user.Id > 0)
             {
+                
+                Dal.EntityFramework.User dalUser = this.Get(user.Id);
+
+                if (!String.IsNullOrEmpty(user.Login))
+                    dalUser.Login = user.Login;
+                if (!String.IsNullOrEmpty(user.Image))
+                    dalUser.Image = user.Image;
+              
                 DatabaseContext.User.Attach(user);
-                DatabaseContext.Entry(user).Property(e => e.Login).IsModified = true;
+                DatabaseContext.Entry(user).Property(i => i.Login).IsModified = true;
             }
             else
             {
-                
                 user.Created = DateTime.Now;
                 DatabaseContext.User.Add(user);
             }
 
             try
             {
+
                 DatabaseContext.SaveChanges();
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException  e)
@@ -51,6 +59,6 @@ namespace Dal
 
             }
             return user.Id;
-        }
+        }*/
     }
 }

@@ -44,9 +44,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="255" />
     <Property Name="Photo" Type="nvarchar" MaxLength="255" />
-    <Property Name="Birthdate" Type="datetime" />
     <Property Name="Created" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Teacher">

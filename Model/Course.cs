@@ -12,10 +12,11 @@ namespace Model
         public int TeacherId { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }
-        public String Photo { get; set; }
+        public String Image { get; set; }
 
         public List<Student> StudentList { get; set; }
 
         public DateTime Created { get; set; }
+        public DateTime Deleted { get; set; }
     }
 }

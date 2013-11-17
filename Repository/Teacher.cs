@@ -23,9 +23,8 @@ namespace Repository
             return new Model.User()
             {
                 Id = dalModel.Id,
-                Login = dalModel.Login,
+                Email = dalModel.Email,
                 Password = dalModel.Password,
-                Image = dalModel.Image,
                 Created = dalModel.Created
             };
         }
@@ -35,9 +34,8 @@ namespace Repository
             return new Dal.EntityFramework.User()
             {
                 Id = model.Id,
-                Login = model.Login,
+                Email = model.Email,
                 Password = model.Password,
-                Image = model.Image,
                 Created = model.Created
             };
         }
