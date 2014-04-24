@@ -12,12 +12,15 @@ namespace NHibernateTutorial.Core.Model
     {
         public virtual int Id { get; protected set; }
         public virtual string Name { get; set; }
+        public virtual IList<Course> Courses { get; set; }
 
-        public Student(){}
+        public Student(){
+        }
 
         public Student(string name)
         {
             this.Name = name;
+            Courses = new List<Course>();
         }
     }
 
@@ -30,6 +33,15 @@ namespace NHibernateTutorial.Core.Model
 
             Id(i => i.Id);
             Map(x => x.Name);
+
+            HasManyToMany<Course>(x => x.Courses)
+            .Table("course_student")
+            .ParentKeyColumn("studentid")
+            .NotFound.Ignore()
+            .ChildKeyColumn("courseid")
+            .NotFound.Ignore()
+            .Cascade
+            .All();
         }
     }
 }

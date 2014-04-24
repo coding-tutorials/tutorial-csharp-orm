@@ -32,7 +32,7 @@ namespace NHibernateTutorial.Test
             Assert.AreNotEqual(0, course.Id);
         }
 
-        [TestMethod]
+        [TestMethod, Ignore]
         public void AddStudentToCourse()
         {
             Repository<Course> repository = new Repository<Course>();

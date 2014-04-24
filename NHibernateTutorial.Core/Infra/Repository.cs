@@ -24,7 +24,10 @@ namespace NHibernateTutorial.Core.Infra
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Model.Course>())
                 .BuildSessionFactory();
 
-            this.Session = this.SessionFactory.OpenSession();
+            //if (SessionFactory.IsClosed)
+                this.Session = this.SessionFactory.OpenSession();
+            //else
+            //    this.Session = this.SessionFactory.GetCurrentSession();
         }
 
         public T Save(T model)
