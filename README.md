@@ -1,15 +1,14 @@
-HighSchoolMVC
+csharp-orm-tutorial
 =============
 
-ASP.NET MVC demo application for learning and academic proposal.
+Simple application with both Entity Framework and NHibernate implementation.
 
-Features
-=============
-- ASP.NET MVC 4 (compatible with .NET Framework 4 and Visual Studio Express)
-- Entity Framework 5 (using database-first approach)
-- SQL Server (compatible with SQL Server Express)
-- Unit Testing
-- CRUD application
-- N-Tier Architecture
 
-You can also meet me at leonardiwagner@gmail.com
+#Featuring
+One-to-many association
+Many-to-many association
+LINQ querying
+Fluent NHibernate for mapping by code (NHibernate only)
+
+#How to start tutorial
+Run the tests!
