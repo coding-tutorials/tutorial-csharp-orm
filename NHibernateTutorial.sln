@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateTutorial.Test", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateTutorial.Core", "NHibernateTutorial.Core\NHibernateTutorial.Core.csproj", "{5957BC22-DF57-4201-A32F-C6DAB68799CB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{BA250FDB-914A-4BD6-ABB4-EDF8A617A347}"
+	ProjectSection(SolutionItems) = preProject
+		mysql5.sql = mysql5.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
