@@ -33,11 +33,11 @@ namespace NHibernateTutorial.Core.Model
             Map(x => x.Name);
 
             HasManyToMany<Student>(x => x.Students)
-            .Table("course_student")
+            .Table("coursestudent")
             .ParentKeyColumn("courseid")
             .ChildKeyColumn("studentid")
             .Cascade
-            .All();
+            .None();
         }
     }
 }

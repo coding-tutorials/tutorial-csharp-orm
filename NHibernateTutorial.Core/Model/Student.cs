@@ -13,14 +13,15 @@ namespace NHibernateTutorial.Core.Model
         public virtual int Id { get; protected set; }
         public virtual string Name { get; set; }
         public virtual IList<Course> Courses { get; set; }
+        public virtual IList<Exam> Exams { get; set; }
 
-        public Student(){
-        }
+        public Student(){}
 
         public Student(string name)
         {
             this.Name = name;
             Courses = new List<Course>();
+            Exams = new List<Exam>();
         }
     }
 
@@ -28,20 +29,24 @@ namespace NHibernateTutorial.Core.Model
     {
         public StudentMap()
         {
-            
             Table("student");
 
             Id(i => i.Id);
             Map(x => x.Name);
 
             HasManyToMany<Course>(x => x.Courses)
-            .Table("course_student")
-            .ParentKeyColumn("studentid")
-            .NotFound.Ignore()
-            .ChildKeyColumn("courseid")
-            .NotFound.Ignore()
-            .Cascade
-            .All();
+                .Table("coursestudent")
+                .ParentKeyColumn("studentid")
+                .ChildKeyColumn("courseid");
+                //.Inverse() //To be able to delete a student with a course relationship
+                //.Cascade
+                //.Delete();
+
+            HasMany<Exam>(x => x.Exams)
+                .KeyColumn("studentid")
+                .Inverse() //To be able to delete a student with a course relationship
+                .Cascade
+                .Delete();
         }
     }
 }
