@@ -13,7 +13,7 @@ namespace NHibernateTutorial.Core.Model
         public virtual int Id { get; protected set; }
         public virtual string Name { get; set; }
         public virtual IList<Course> Courses { get; set; }
-        public virtual IList<Exam> Exams { get; set; }
+        public virtual IList<Enrollment> Enrollments { get; set; }
 
         public Student(){}
 
@@ -21,7 +21,7 @@ namespace NHibernateTutorial.Core.Model
         {
             this.Name = name;
             Courses = new List<Course>();
-            Exams = new List<Exam>();
+            Enrollments = new List<Enrollment>();
         }
     }
 
@@ -42,9 +42,9 @@ namespace NHibernateTutorial.Core.Model
                 //.Cascade
                 //.Delete();
 
-            HasMany<Exam>(x => x.Exams)
+            HasMany<Enrollment>(x => x.Enrollments)
                 .KeyColumn("studentid")
-                .Inverse() //To be able to delete a student with a course relationship
+                .Inverse() //To be able to delete a student with a enrollment relationship
                 .Cascade
                 .Delete();
         }

@@ -9,7 +9,7 @@ using NHibernateTutorial.Core.Infra;
 
 namespace NHibernateTutorial.Test
 {
-    [TestClass, Ignore]
+    [TestClass]
     public class CourseTest
     {
         private DatabaseConnection database = new DatabaseConnection();
@@ -21,24 +21,42 @@ namespace NHibernateTutorial.Test
             var courseList = repository.GetAll();
 
             foreach (var course in courseList)
-            { 
-                if(course.Students != null && course.Students.Count > 0)
                 repository.Delete(course);
-            }
+        }
+
+        [TestCleanup]
+        public void Dispose()
+        {
+            this.database.Dispose();
         }
 
         [TestMethod]
-        public void CreateCourse()
+        public void CourseCreate()
         {
-            var course = new Course("Mathematics");
             Repository<Course> repository = new Repository<Course>(database);
+            var course = new Course("Mathematics");
             repository.Save(course);
 
             Assert.AreNotEqual(0, course.Id);
         }
 
         [TestMethod]
-        public void AddStudentToCourse()
+        public void CourseEdit()
+        {
+            Repository<Course> repository = new Repository<Course>(database);
+            var course = new Course("Mathematics");
+            repository.Save(course);
+
+            var courseEdit = repository.GetWhere(c => c.Id == course.Id).First();
+            courseEdit.Name = "Physics";
+            repository.Save(courseEdit);
+
+            var checkEditedCourse = repository.GetWhere(c => c.Id == courseEdit.Id).First();
+            checkEditedCourse.Should().NotBe(course.Name);
+        }
+
+        [TestMethod]
+        public void CourseAddStudent()
         {
             Repository<Course> repository = new Repository<Course>(database);
             Repository<Student> repository2 = new Repository<Student>(database);
@@ -50,6 +68,25 @@ namespace NHibernateTutorial.Test
             course.Students.Add(student);
 
             repository.Save(course);
+        }
+
+        [TestMethod]
+        public void CourseDeleteWithStudent()
+        {
+            Repository<Course> courseRepository = new Repository<Course>(database);
+            Repository<Student> studentRepository = new Repository<Student>(database);
+
+            var student = new Student("Newbie student");
+            studentRepository.Save(student);
+
+            var course = new Course("French");
+            course.Students.Add(student);
+
+            courseRepository.Delete(course);
+
+            var checkStudentStillExists = studentRepository.GetWhere(s => s.Id == student.Id).First();
+
+            checkStudentStillExists.Name.Should().Be(student.Name);
         }
     }
 }

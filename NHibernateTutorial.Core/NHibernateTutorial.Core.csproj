@@ -51,7 +51,7 @@
     <Compile Include="Infra\DatabaseConnection.cs" />
     <Compile Include="Infra\Repository.cs" />
     <Compile Include="Model\Course.cs" />
-    <Compile Include="Model\Exam.cs" />
+    <Compile Include="Model\Enrollment.cs" />
     <Compile Include="Model\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -25,8 +25,14 @@ namespace NHibernateTutorial.Test
                 studentRepository.Delete(student);
         }
 
+        [TestCleanup]
+        public void Dispose()
+        {
+            this.database.Dispose();
+        }
+
         [TestMethod]
-        public void CreateStudent()
+        public void StudentCreate()
         {
             Student  student = new Student("Julius Prest");
             Repository<Student> repositoryStudent = new Repository<Student>(database);
@@ -36,7 +42,7 @@ namespace NHibernateTutorial.Test
         }
 
         [TestMethod]
-        public void EditStudent()
+        public void StudentEdit()
         {
             string originalName = "Original Name";
 
@@ -54,7 +60,7 @@ namespace NHibernateTutorial.Test
         }
 
         [TestMethod]
-        public void CreateStudentWithCourse()
+        public void StudentDoCourse()
         {
             Repository<Student> repositoryStudent = new Repository<Student>(database);
             Repository<Course> repositoryCourse = new Repository<Course>(database);
@@ -70,29 +76,24 @@ namespace NHibernateTutorial.Test
         }
 
         [TestMethod]
-        public void CreateStudentWithExam()
+        public void StudentEnrolls()
         {
             Repository<Student> repositoryStudent = new Repository<Student>(database);
-            Repository<Course> repositoryCourse = new Repository<Course>(database);
-            Repository<Exam> repositoryExam = new Repository<Exam>(database);
-
-            Course course = new Course("Mathematics");
-            repositoryCourse.Save(course);
+            Repository<Enrollment> repositoryEnrollment = new Repository<Enrollment>(database);
 
             Student student = new Student("Julius Prest");
-            student.Courses.Add(course);
             repositoryStudent.Save(student);
 
-            Exam exam = new Exam(student, course, 7);
-            repositoryExam.Save(exam);
+            var ENROLLMENT_DATE = DateTime.Now;
+            Enrollment enrollment = new Enrollment(student, ENROLLMENT_DATE);
+            repositoryEnrollment.Save(enrollment);
 
-            exam.Course.Id.Should().Be(course.Id);
-            exam.Student.Id.Should().Be(student.Id);
-            exam.Score.Should().Be(exam.Score);
+            enrollment.Student.Id.Should().Be(student.Id);
+            enrollment.Date.Should().Be(enrollment.Date);
         }
 
         [TestMethod]
-        public void DeleteStudentWithCourse()
+        public void StudentDeleteWithCourse()
         {
             Repository<Student> repositoryStudent = new Repository<Student>(database);
             Repository<Course> repositoryCourse = new Repository<Course>(database);
@@ -109,10 +110,6 @@ namespace NHibernateTutorial.Test
             Course confirmCourseStillExists = repositoryCourse.GetWhere(c => c.Id == course.Id).First();
             confirmCourseStillExists.Name.Should().Be("Mathematics");
         }
-
-       
-
-        
 
     }
 }

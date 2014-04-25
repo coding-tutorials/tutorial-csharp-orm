@@ -15,8 +15,6 @@ namespace NHibernateTutorial.Core.Infra
 
         public DatabaseConnection()
         {
-           // if (this.SessionFactory != null) return;
-
             var NHConfigure = new NHibernate.Cfg.Configuration()
                 .Configure("hibernate.cfg.xml");
 
@@ -25,7 +23,6 @@ namespace NHibernateTutorial.Core.Infra
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Model.Course>())
                 .BuildSessionFactory();
 
-            
             this.Session = this.SessionFactory.OpenSession();
         }
 

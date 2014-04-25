@@ -28,7 +28,7 @@ CREATE TABLE `course` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (92,'Physics'),(93,'Mathematics'),(94,'Mathematics'),(97,'Mathematics'),(99,'Mathematics'),(100,'Mathematics'),(101,'Mathematics'),(102,'Mathematics'),(103,'Mathematics'),(104,'Mathematics'),(105,'Mathematics');
+INSERT INTO `course` VALUES (186,'Mathematics'),(187,'Mathematics');
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +57,7 @@ CREATE TABLE `coursestudent` (
   KEY `fk_course_idx` (`courseid`),
   CONSTRAINT `fk_coursestudent_student` FOREIGN KEY (`studentid`) REFERENCES `student` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_coursestudent_course` FOREIGN KEY (`courseid`) REFERENCES `course` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,32 +70,29 @@ LOCK TABLES `coursestudent` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `exam`
+-- Table structure for table `enrollment`
 --
 
-DROP TABLE IF EXISTS `exam`;
+DROP TABLE IF EXISTS `enrollment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `exam` (
+CREATE TABLE `enrollment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `studentid` int(11) NOT NULL,
-  `courseid` int(11) NOT NULL,
-  `score` int(11) NOT NULL,
+  `date` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_student_idx` (`studentid`),
-  KEY `fk_course_idx` (`courseid`),
-  CONSTRAINT `fk_exam_student` FOREIGN KEY (`studentid`) REFERENCES `student` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_exam_course` FOREIGN KEY (`courseid`) REFERENCES `course` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_enrollment_student` FOREIGN KEY (`studentid`) REFERENCES `student` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `exam`
+-- Dumping data for table `enrollment`
 --
 
-LOCK TABLES `exam` WRITE;
-/*!40000 ALTER TABLE `exam` DISABLE KEYS */;
-/*!40000 ALTER TABLE `exam` ENABLE KEYS */;
+LOCK TABLES `enrollment` WRITE;
+/*!40000 ALTER TABLE `enrollment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `enrollment` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -109,7 +106,7 @@ CREATE TABLE `student` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=254 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,6 +115,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` VALUES (251,'Renan Basque'),(252,'Renan Basque'),(253,'Renan Basque');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -130,4 +128,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-25 15:03:28
+-- Dump completed on 2014-04-25 16:18:11

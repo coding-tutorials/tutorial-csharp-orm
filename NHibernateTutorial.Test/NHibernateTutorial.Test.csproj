@@ -61,7 +61,7 @@
     <Compile Include="CourseTest.cs" />
     <Compile Include="StudentTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ExamTest.cs" />
+    <Compile Include="EnrollmentTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NHibernateTutorial.Core\NHibernateTutorial.Core.csproj">

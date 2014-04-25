@@ -35,9 +35,9 @@ namespace NHibernateTutorial.Core.Model
             HasManyToMany<Student>(x => x.Students)
             .Table("coursestudent")
             .ParentKeyColumn("courseid")
-            .ChildKeyColumn("studentid")
-            .Cascade
-            .None();
+            .ChildKeyColumn("studentid");
+            //.Cascade
+            //.None();
         }
     }
 }

@@ -8,33 +8,30 @@ using FluentNHibernate.Mapping;
 
 namespace NHibernateTutorial.Core.Model
 {
-    public class Exam
+    public class Enrollment
     {
         public virtual int Id { get; protected set; }
         public virtual Student Student { get; set; }
-        public virtual Course Course { get; set; }
-        public virtual int Score { get; set; }
+        public virtual DateTime Date { get; set; }
 
-        protected Exam(){}
+        protected Enrollment(){}
 
-        public Exam(Student student, Course course, int score)
+        public Enrollment(Student student, DateTime date)
         {
             this.Student = student;
-            this.Course = course;
-            this.Score = score;
+            this.Date = date;
         }
 
-        public class StudentExamMap : ClassMap<Exam>
+        public class EnrollmentMap : ClassMap<Enrollment>
         {
-            public StudentExamMap()
+            public EnrollmentMap()
             {
-                Table("exam");
+                Table("enrollment");
 
                 Id(i => i.Id);
-                Map(x => x.Score);
+                Map(x => x.Date);
 
                 References(x => x.Student).Column("studentid");
-                References(x => x.Course).Column("courseid");
             }
         }
 
