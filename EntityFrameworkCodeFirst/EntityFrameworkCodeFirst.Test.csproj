@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3CF1EF49-8E66-4F72-B614-8563F26CBD28}</ProjectGuid>
+    <ProjectGuid>{98D1202D-8F79-4A53-B59C-640B0194B1A2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NHibernateTutorial.Test</RootNamespace>
-    <AssemblyName>NHibernateTutorial.Test</AssemblyName>
+    <RootNamespace>EntityFrameworkCodeFirst</RootNamespace>
+    <AssemblyName>EntityFrameworkCodeFirst</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,15 +35,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentAssertions">
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentAssertions.3.0.0-alpha5\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
-    <Reference Include="FluentAssertions.Core">
+    <Reference Include="FluentAssertions.Core, Version=0.0.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentAssertions.3.0.0-alpha5\lib\net45\FluentAssertions.Core.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.7.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MySql.Data.6.7.5\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF5, Version=6.7.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MySql.Data.Entity.6.7.5\lib\net45\MySql.Data.Entity.EF5.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -65,18 +75,18 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CourseTest.cs" />
-    <Compile Include="StudentTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EnrollmentTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StudentTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NHibernateTutorial.Core\NHibernateTutorial.Core.csproj">
-      <Project>{5957bc22-df57-4201-a32f-c6dab68799cb}</Project>
-      <Name>NHibernateTutorial.Core</Name>
+    <ProjectReference Include="..\EntityFrameworkCodeFirst.Core\EntityFrameworkCodeFirst.Core.csproj">
+      <Project>{1c05cf2d-fcf2-4085-a7a9-f31cb1f209a5}</Project>
+      <Name>EntityFrameworkCodeFirst.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

@@ -18,10 +18,6 @@ namespace NHibernateTutorial.Core.Infra
             Session = databaseConnection.Session;
         }
 
-        public Repository()
-        {
-        }
-
         public T Save(T model)
         {
             Session.BeginTransaction();
