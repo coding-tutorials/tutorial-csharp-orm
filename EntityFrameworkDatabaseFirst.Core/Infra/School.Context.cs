@@ -30,4 +30,5 @@ namespace EntityFramework.Core.Infra
         public DbSet<enrollment> enrollment { get; set; }
         public DbSet<student> student { get; set; }
     }
+
 }

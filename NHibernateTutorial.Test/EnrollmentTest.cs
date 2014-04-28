@@ -73,6 +73,7 @@ namespace NHibernateTutorial.Test
 
             var student = new Student("Renan Basque");
             studentRepository.Save(student);
+            int studentId = student.Id;
 
             var ENROLLMENT_DATE = DateTime.Now;
             var enrollment = new Enrollment(student, ENROLLMENT_DATE);
@@ -80,7 +81,7 @@ namespace NHibernateTutorial.Test
 
             enrollmentRepository.Delete(enrollment);
 
-            var confirmStudentStillExist = studentRepository.GetWhere(s => s.Id == enrollment.Student.Id).First();
+            var confirmStudentStillExist = studentRepository.GetWhere(s => s.Id == studentId).First();
             confirmStudentStillExist.Id.Should().Be(student.Id);
         }
 

@@ -8,13 +8,14 @@ using System.Data.Entity;
 
 namespace EntityFrameworkCodeFirst.Core.Infra
 {
-    public class DatabaseConnection : IDisposable
+    public class DatabaseConnection : DropCreateDatabaseAlways<DbContext>, IDisposable
     {
         public DbContext Context { get; private set; }
 
         public DatabaseConnection()
         {
             this.Context = new EntityFrameworkContext();
+            Database.SetInitializer<DbContext>(new DropCreateDatabaseAlways<DbContext>());
         }
 
         public void Dispose()
@@ -25,7 +26,9 @@ namespace EntityFrameworkCodeFirst.Core.Infra
 
     public class EntityFrameworkContext : DbContext, IDisposable
     {
-        public EntityFrameworkContext() : base() { }
+        public EntityFrameworkContext() : base("schoolMySQL") {
+            
+        }
 
         public DbSet<Model.Course> Courses {get;set;}
         public DbSet<Model.Student> Students {get;set;}
@@ -33,6 +36,7 @@ namespace EntityFrameworkCodeFirst.Core.Infra
 
         public void Dispose()
         {
+            
             this.Dispose();
         }
     }

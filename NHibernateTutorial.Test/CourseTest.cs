@@ -78,13 +78,15 @@ namespace NHibernateTutorial.Test
 
             var student = new Student("Newbie student");
             studentRepository.Save(student);
+            int studentId = student.Id;
 
             var course = new Course("French");
             course.Students.Add(student);
+            courseRepository.Save(course);
 
             courseRepository.Delete(course);
 
-            var checkStudentStillExists = studentRepository.GetWhere(s => s.Id == student.Id).First();
+            var checkStudentStillExists = studentRepository.GetWhere(s => s.Id == studentId).First();
 
             checkStudentStillExists.Name.Should().Be(student.Name);
         }

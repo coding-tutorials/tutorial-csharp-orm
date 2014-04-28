@@ -18,11 +18,20 @@ namespace EntityFrameworkCodeFirst.Test
         public void Initialize()
         {
             Repository<Student> studentRepository = new Repository<Student>(database);
+            Repository<Course> courseRepository = new Repository<Course>(database);
+            Repository<Enrollment> enrollmentRepository = new Repository<Enrollment>(database);
 
             var studentList = studentRepository.GetAll().ToList();
 
-            foreach(var student in studentList.ToList())
+            foreach (var student in studentList.ToList())
+            {
+                if (student.Courses != null && student.Courses.ToList().Count > 0)
+                    student.Courses.ToList().ForEach(x => courseRepository.Delete(x));
+                if (student.Enrollments != null && student.Enrollments.ToList().Count > 0)
+                    student.Enrollments.ToList().ForEach(x => enrollmentRepository.Delete(x));
+
                 studentRepository.Delete(student);
+            }
         }
 
         [TestCleanup]
@@ -92,7 +101,7 @@ namespace EntityFrameworkCodeFirst.Test
             enrollment.Date.Should().Be(enrollment.Date);
         }
 
-        [TestMethod , Ignore]
+        [TestMethod]
         public void StudentDeleteWithCourse()
         {
             Repository<Student> repositoryStudent = new Repository<Student>(database);

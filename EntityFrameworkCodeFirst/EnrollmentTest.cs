@@ -17,11 +17,17 @@ namespace EntityFrameworkCodeFirst.Test
         [TestInitialize]
         public void Initialize()
         {
+            Repository<Student> studentRepository = new Repository<Student>(database);
             Repository<Enrollment> enrollmentRepository = new Repository<Enrollment>(database);
             var enrollmentList = enrollmentRepository.GetAll();
 
             foreach (var enrollment in enrollmentList.ToList())
+            {
+                if (enrollment.Student != null)
+                    studentRepository.Delete(enrollment.Student);
+
                 enrollmentRepository.Delete(enrollment);
+            }
         }
 
         [TestCleanup]
@@ -65,14 +71,16 @@ namespace EntityFrameworkCodeFirst.Test
             confirmEditedEnrollment.Date.Should().NotBe(ENROLLMENT_DATE);
         }
 
-        [TestMethod, Ignore]
+        [TestMethod]
         public void EnrollementDeleteWithStudent()
         {
             var studentRepository = new Repository<Student>(database);
             var enrollmentRepository = new Repository<Enrollment>(database);
 
+            
             var student = new Student("Renan Basque");
             studentRepository.Save(student);
+            int studentId = student.Id;
 
             var ENROLLMENT_DATE = DateTime.Now;
             var enrollment = new Enrollment(student, ENROLLMENT_DATE);
@@ -80,7 +88,7 @@ namespace EntityFrameworkCodeFirst.Test
 
             enrollmentRepository.Delete(enrollment);
 
-            var confirmStudentStillExist = studentRepository.GetWhere(s => s.Id == enrollment.Student.Id).First();
+            var confirmStudentStillExist = studentRepository.GetWhere(s => s.Id == studentId).First();
             confirmStudentStillExist.Id.Should().Be(student.Id);
         }
 

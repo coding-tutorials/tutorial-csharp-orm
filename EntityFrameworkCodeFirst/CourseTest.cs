@@ -17,11 +17,18 @@ namespace EntityFrameworkCodeFirst.Test
         [TestInitialize]
         public void Initialize()
         {
-            Repository<Course> repository = new Repository<Course>(database);
-            var courseList = repository.GetAll();
+            Repository<Course> courseRepository = new Repository<Course>(database);
+            Repository<Student> studentRepository = new Repository<Student>(database);
+            
+            var courseList = courseRepository.GetAll();
 
             foreach (var course in courseList.ToList())
-                repository.Delete(course);
+            {
+                if (course.Students != null && course.Students.ToList().Count > 0)
+                    course.Students.ToList().ForEach(x => studentRepository.Delete(x));
+
+                courseRepository.Delete(course);
+            }
         }
 
         [TestCleanup]
@@ -70,7 +77,7 @@ namespace EntityFrameworkCodeFirst.Test
             repository.Save(course);
         }
 
-        [TestMethod, Ignore]
+        [TestMethod]
         public void CourseDeleteWithStudent()
         {
             Repository<Course> courseRepository = new Repository<Course>(database);
@@ -78,13 +85,15 @@ namespace EntityFrameworkCodeFirst.Test
 
             var student = new Student("Newbie student");
             studentRepository.Save(student);
+            int studentId = student.Id;
 
             var course = new Course("French");
             course.Students.Add(student);
+            courseRepository.Save(course);
 
             courseRepository.Delete(course);
 
-            var checkStudentStillExists = studentRepository.GetWhere(s => s.Id == student.Id).First();
+            var checkStudentStillExists = studentRepository.GetWhere(s => s.Id == studentId).First();
 
             checkStudentStillExists.Name.Should().Be(student.Name);
         }
