@@ -17,25 +17,19 @@ namespace NHibernateTutorial.Test
         [TestInitialize]
         public void Initialize()
         {
-            Repository<Course> repository = new Repository<Course>(database);
-            var courseList = repository.GetAll();
+            Repository<Course> courseRepository = new Repository<Course>(database);
+            var courseList = courseRepository.GetAll();
 
             foreach (var course in courseList)
-                repository.Delete(course);
-        }
-
-        [TestCleanup]
-        public void Dispose()
-        {
-            this.database.Dispose();
+                courseRepository.Delete(course);
         }
 
         [TestMethod]
         public void CourseCreate()
         {
-            Repository<Course> repository = new Repository<Course>(database);
+            Repository<Course> courseRepository = new Repository<Course>(database);
             var course = new Course("Mathematics");
-            repository.Save(course);
+            courseRepository.Save(course);
 
             Assert.AreNotEqual(0, course.Id);
         }
@@ -43,31 +37,31 @@ namespace NHibernateTutorial.Test
         [TestMethod]
         public void CourseEdit()
         {
-            Repository<Course> repository = new Repository<Course>(database);
+            Repository<Course> courseRepository = new Repository<Course>(database);
             var course = new Course("Mathematics");
-            repository.Save(course);
+            courseRepository.Save(course);
 
-            var courseEdit = repository.GetWhere(c => c.Id == course.Id).First();
+            var courseEdit = courseRepository.GetWhere(c => c.Id == course.Id).First();
             courseEdit.Name = "Physics";
-            repository.Save(courseEdit);
+            courseRepository.Save(courseEdit);
 
-            var checkEditedCourse = repository.GetWhere(c => c.Id == courseEdit.Id).First();
+            var checkEditedCourse = courseRepository.GetWhere(c => c.Id == courseEdit.Id).First();
             checkEditedCourse.Should().NotBe(course.Name);
         }
 
         [TestMethod]
         public void CourseAddStudent()
         {
-            Repository<Course> repository = new Repository<Course>(database);
-            Repository<Student> repository2 = new Repository<Student>(database);
+            Repository<Course> courseRepository = new Repository<Course>(database);
+            Repository<Student> studentRepository = new Repository<Student>(database);
 
             var student = new Student("Newbie student");
-            repository2.Save(student);
+            studentRepository.Save(student);
 
             var course = new Course("French");
             course.Students.Add(student);
 
-            repository.Save(course);
+            courseRepository.Save(course);
         }
 
         [TestMethod]
@@ -89,6 +83,12 @@ namespace NHibernateTutorial.Test
             var checkStudentStillExists = studentRepository.GetWhere(s => s.Id == studentId).First();
 
             checkStudentStillExists.Name.Should().Be(student.Name);
+        }
+
+        [TestCleanup]
+        public void Dispose()
+        {
+            this.database.Dispose();
         }
     }
 }

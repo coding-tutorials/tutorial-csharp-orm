@@ -20,6 +20,5 @@ namespace EntityFrameworkCodeFirst.Core.Model
             this.Date = date;
         }
 
-
     }
 }

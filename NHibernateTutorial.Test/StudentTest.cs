@@ -20,21 +20,14 @@ namespace NHibernateTutorial.Test
             Repository<Student> studentRepository = new Repository<Student>(database);
 
             var studentList = studentRepository.GetAll().ToList();
-
             foreach(var student in studentList)
                 studentRepository.Delete(student);
-        }
-
-        [TestCleanup]
-        public void Dispose()
-        {
-            this.database.Dispose();
         }
 
         [TestMethod]
         public void StudentCreate()
         {
-            Student  student = new Student("Julius Prest");
+            Student student = new Student("Julius Prest");
             Repository<Student> repositoryStudent = new Repository<Student>(database);
             repositoryStudent.Save(student);
 
@@ -109,6 +102,12 @@ namespace NHibernateTutorial.Test
 
             Course confirmCourseStillExists = repositoryCourse.GetWhere(c => c.Id == course.Id).First();
             confirmCourseStillExists.Name.Should().Be("Mathematics");
+        }
+
+        [TestCleanup]
+        public void Dispose()
+        {
+            this.database.Dispose();
         }
 
     }

@@ -14,8 +14,8 @@ namespace EntityFrameworkCodeFirst.Core.Infra
 
         public DatabaseConnection()
         {
+            Database.SetInitializer<EntityFrameworkContext>(new DropCreateDatabaseAlways<EntityFrameworkContext>());
             this.Context = new EntityFrameworkContext();
-            Database.SetInitializer<DbContext>(new DropCreateDatabaseAlways<DbContext>());
         }
 
         public void Dispose()
@@ -26,9 +26,7 @@ namespace EntityFrameworkCodeFirst.Core.Infra
 
     public class EntityFrameworkContext : DbContext, IDisposable
     {
-        public EntityFrameworkContext() : base("schoolMySQL") {
-            
-        }
+        public EntityFrameworkContext() : base("schoolMySQL") {}
 
         public DbSet<Model.Course> Courses {get;set;}
         public DbSet<Model.Student> Students {get;set;}
@@ -36,7 +34,6 @@ namespace EntityFrameworkCodeFirst.Core.Infra
 
         public void Dispose()
         {
-            
             this.Dispose();
         }
     }

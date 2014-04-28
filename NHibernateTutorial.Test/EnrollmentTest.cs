@@ -24,12 +24,6 @@ namespace NHibernateTutorial.Test
                 enrollmentRepository.Delete(enrollment);
         }
 
-        [TestCleanup]
-        public void Dispose()
-        {
-            this.database.Dispose();
-        }
-
         [TestMethod]
         public void EnrollementCreate()
         {
@@ -85,6 +79,11 @@ namespace NHibernateTutorial.Test
             confirmStudentStillExist.Id.Should().Be(student.Id);
         }
 
+        [TestCleanup]
+        public void Dispose()
+        {
+            this.database.Dispose();
+        }
 
     }
 }
