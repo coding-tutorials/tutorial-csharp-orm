@@ -10,85 +10,116 @@ using NHibernateTutorial.Core.Infra;
 namespace NHibernateTutorial.Test
 {
     [TestClass]
-    public class CourseTest
+    public class CourseTest : TestHelper
     {
-        private DatabaseConnection database = new DatabaseConnection();
-
         [TestInitialize]
         public void Initialize()
         {
-            Repository<Course> courseRepository = new Repository<Course>(database);
-            var courseList = courseRepository.GetAll();
+            using (var unityOfWork = new UnityOfWork())
+            {
+                Repository<Course> courseRepository = new Repository<Course>(unityOfWork);
+                var courseList = courseRepository.GetAll();
 
-            foreach (var course in courseList)
-                courseRepository.Delete(course);
+                foreach (var course in courseList)
+                    courseRepository.Delete(course);
+
+                unityOfWork.Commit();
+            }
         }
 
         [TestMethod]
         public void CourseCreate()
         {
-            Repository<Course> courseRepository = new Repository<Course>(database);
-            var course = new Course("Mathematics");
-            courseRepository.Save(course);
-
+            Course course = this.CreateGenericCourse();
             Assert.AreNotEqual(0, course.Id);
         }
 
         [TestMethod]
         public void CourseEdit()
         {
-            Repository<Course> courseRepository = new Repository<Course>(database);
-            var course = new Course("Mathematics");
-            courseRepository.Save(course);
+            using (var unityOfWork = new UnityOfWork())
+            {
+                var course = this.CreateGenericCourse();
 
-            var courseEdit = courseRepository.GetWhere(c => c.Id == course.Id).First();
-            courseEdit.Name = "Physics";
-            courseRepository.Save(courseEdit);
+                Repository<Course> courseRepository = new Repository<Course>(unityOfWork);
+                var courseEdit = courseRepository.GetWhere(c => c.Id == course.Id).First();
+                courseEdit.Name = "Physics";
+                unityOfWork.Begin();
+                courseRepository.Save(courseEdit);
+                unityOfWork.Commit();
 
-            var checkEditedCourse = courseRepository.GetWhere(c => c.Id == courseEdit.Id).First();
-            checkEditedCourse.Should().NotBe(course.Name);
+                unityOfWork.Begin();
+                var checkEditedCourse = courseRepository.GetWhere(c => c.Id == courseEdit.Id).First();
+                checkEditedCourse.Should().NotBe(course.Name);
+                unityOfWork.Commit();
+            }
         }
 
+  
         [TestMethod]
         public void CourseAddStudent()
         {
-            Repository<Course> courseRepository = new Repository<Course>(database);
-            Repository<Student> studentRepository = new Repository<Student>(database);
+            Course course;
+            Student student;
 
-            var student = new Student("Newbie student");
-            studentRepository.Save(student);
+            using (var unityOfWork = new UnityOfWork())
+            {
+                Repository<Course> courseRepository = new Repository<Course>(unityOfWork);
+                Repository<Student> studentRepository = new Repository<Student>(unityOfWork);
 
-            var course = new Course("French");
-            course.Students.Add(student);
+                unityOfWork.Begin();
+                student = new Student("Newbie student");
+                studentRepository.Save(student);
+                course = new Course("French");
+                course.Students.Add(student);
+                courseRepository.Save(course);
+                unityOfWork.Commit();
 
-            courseRepository.Save(course);
+            }
+
+            using (var unityOfWork = new UnityOfWork())
+            {
+                //unityOfWork.Begin();
+                Repository<Student> studentRepository = new Repository<Student>(unityOfWork);
+                var searchStudent = studentRepository.GetWhere(x => x.Id == student.Id).First();
+                searchStudent.Courses.First().Id.Should().Be(course.Id);
+               // unityOfWork.Commit();
+            }
         }
 
         [TestMethod]
         public void CourseDeleteWithStudent()
         {
-            Repository<Course> courseRepository = new Repository<Course>(database);
-            Repository<Student> studentRepository = new Repository<Student>(database);
+            using (var unityOfWork = new UnityOfWork())
+            {
+                Repository<Course> courseRepository = new Repository<Course>(unityOfWork);
+                Repository<Student> studentRepository = new Repository<Student>(unityOfWork);
 
-            var student = new Student("Newbie student");
-            studentRepository.Save(student);
-            int studentId = student.Id;
+                var student = new Student("Newbie student");
+                studentRepository.Save(student);
+                int studentId = student.Id;
 
-            var course = new Course("French");
-            course.Students.Add(student);
-            courseRepository.Save(course);
+                var course = new Course("French");
+                course.Students.Add(student);
 
-            courseRepository.Delete(course);
+                unityOfWork.Begin();
+                courseRepository.Save(course);
+                unityOfWork.Commit();
 
-            var checkStudentStillExists = studentRepository.GetWhere(s => s.Id == studentId).First();
+                unityOfWork.Begin();
+                courseRepository.Delete(course);
+                unityOfWork.Commit();
 
-            checkStudentStillExists.Name.Should().Be(student.Name);
+                var checkStudentStillExists = studentRepository.GetWhere(s => s.Id == studentId).First();
+
+                checkStudentStillExists.Name.Should().Be(student.Name);
+            }
         }
 
         [TestCleanup]
         public void Dispose()
         {
-            this.database.Dispose();
+            //this.database.Dispose();
         }
     }
 }

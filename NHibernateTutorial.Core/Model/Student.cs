@@ -37,8 +37,8 @@ namespace NHibernateTutorial.Core.Model
             HasManyToMany<Course>(x => x.Courses)
                 .Table("coursestudent")
                 .ParentKeyColumn("studentid")
-                .ChildKeyColumn("courseid");
-                //.Inverse() //To be able to delete a student with a course relationship
+                .ChildKeyColumn("courseid")
+                .Inverse(); //To be able to delete a student with a course relationship
                 //.Cascade
                 //.Delete();
 

@@ -8,27 +8,25 @@ using NHibernate;
 
 namespace NHibernateTutorial.Core.Infra
 {
-    public class DatabaseConnection : IDisposable
+    public class DatabaseConnection
     {
-        private readonly ISessionFactory SessionFactory;
-        public ISession Session { get; private set; }
+        private static ISession session;
 
-        public DatabaseConnection()
+        public static ISession GetSession()
         {
-            var NHConfigure = new NHibernate.Cfg.Configuration()
-                .Configure("hibernate.cfg.xml");
+            if(session == null){
+                var nHConfigure = new NHibernate.Cfg.Configuration()
+                                        .Configure("hibernate.cfg.xml");
 
-            this.SessionFactory = FluentNHibernate.Cfg.Fluently.Configure(NHConfigure)
-                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Model.Student>())
-                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Model.Course>())
-                .BuildSessionFactory();
+                var sessionFactory = FluentNHibernate.Cfg.Fluently.Configure(nHConfigure)
+                                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Model.Student>())
+                                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Model.Course>())
+                                    .BuildSessionFactory();
 
-            this.Session = this.SessionFactory.OpenSession();
-        }
+               session = sessionFactory.OpenSession();
+            }
 
-        public void Dispose()
-        {
-            Session.Dispose();
+            return session;
         }
     }
 }

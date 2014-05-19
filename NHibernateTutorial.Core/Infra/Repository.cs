@@ -11,39 +11,35 @@ namespace NHibernateTutorial.Core.Infra
 {
     public class Repository<T>
     {
-        private ISession Session;
+        private IUnityOfWork unityOfWork;
 
-        public Repository(DatabaseConnection databaseConnection)
+        public Repository(IUnityOfWork unityOfWork)
         {
-            Session = databaseConnection.Session;
+            this.unityOfWork = unityOfWork;
         }
 
         public T Save(T model)
         {
-            Session.BeginTransaction();
-            Session.Save(model);
-            Session.Transaction.Commit();
+            this.unityOfWork.GetSession().Save(model);
             return model;
         }
 
         public IQueryable<T> GetWhere(Expression<Func<T, bool>> predicate)
         {
-            return Session.Query<T>()
+            return this.unityOfWork.GetSession().Query<T>()
                 .Where(predicate)
                 .Select(model => model);
         }
 
         public IQueryable<T> GetAll()
         {
-            return Session.Query<T>()
+            return this.unityOfWork.GetSession().Query<T>()
                 .Select(model => model);
         }
 
         public void Delete(T model)
         {
-            Session.BeginTransaction();
-            Session.Delete(model);
-            Session.Transaction.Commit();
+            this.unityOfWork.GetSession().Delete(model);
         }
     }
 }

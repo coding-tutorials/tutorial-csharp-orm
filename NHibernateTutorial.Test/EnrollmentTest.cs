@@ -9,6 +9,7 @@ using NHibernateTutorial.Core.Infra;
 
 namespace NHibernateTutorial.Test
 {
+    /*
     [TestClass]
     public class EnrollmentTest
     {
@@ -85,5 +86,5 @@ namespace NHibernateTutorial.Test
             this.database.Dispose();
         }
 
-    }
+    }*/
 }
