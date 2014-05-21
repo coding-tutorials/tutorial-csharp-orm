@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DF40C2EF-FDC5-4201-B25B-D5D4D46C1223}</ProjectGuid>
+    <ProjectGuid>{5957BC22-DF57-4201-A32F-C6DAB68799CB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EntityFramework.Core</RootNamespace>
-    <AssemblyName>EntityFramework.Core</AssemblyName>
+    <RootNamespace>NHibernateTutorial.Core</RootNamespace>
+    <AssemblyName>NHibernate</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,16 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.4.0.0-Alpha1\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,63 +48,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infra\course.cs">
-      <DependentUpon>School.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Infra\coursestudent.cs">
-      <DependentUpon>School.tt</DependentUpon>
-    </Compile>
     <Compile Include="Infra\DatabaseConnection.cs" />
-    <Compile Include="Infra\enrollment.cs">
-      <DependentUpon>School.tt</DependentUpon>
-    </Compile>
     <Compile Include="Infra\Repository.cs" />
-    <Compile Include="Infra\School.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>School.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Infra\School.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>School.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Infra\School.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>School.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Infra\student.cs">
-      <DependentUpon>School.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Infra\UnityOfWork.cs" />
     <Compile Include="Model\Course.cs" />
     <Compile Include="Model\Enrollment.cs" />
     <Compile Include="Model\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <EntityDeploy Include="Infra\School.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>School.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Infra\School.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>School.edmx</DependentUpon>
-      <LastGenOutput>School.Context.cs</LastGenOutput>
-    </None>
-    <None Include="Infra\School.edmx.diagram">
-      <DependentUpon>School.edmx</DependentUpon>
-    </None>
-    <None Include="Infra\School.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>School.edmx</DependentUpon>
-      <LastGenOutput>School.cs</LastGenOutput>
-    </None>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="hibernate.cfg.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\ORMTutorial.csproj">
+      <Project>{efacb2bf-baf6-48dc-91d3-0105089cbe51}</Project>
+      <Name>ORMTutorial</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
