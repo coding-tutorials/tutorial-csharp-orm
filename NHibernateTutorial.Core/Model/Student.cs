@@ -38,13 +38,13 @@ namespace NHibernateTutorial.Core.Model
                 .Table("coursestudent")
                 .ParentKeyColumn("studentid")
                 .ChildKeyColumn("courseid")
-                .Inverse(); //To be able to delete a student with a course relationship
-                //.Cascade
-                //.Delete();
+                .Cascade //Decides what does with its relationships
+                .All();
+                
 
             HasMany<Enrollment>(x => x.Enrollments)
                 .KeyColumn("studentid")
-                .Inverse() //To be able to delete a student with a enrollment relationship
+                .Inverse() //Relationship owner
                 .Cascade
                 .Delete();
         }

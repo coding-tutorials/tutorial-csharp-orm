@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EntityFrameworkCodeFirst.Core.Model
+namespace ORMTutorial.Model
 {
     public class Enrollment
     {
@@ -19,6 +19,5 @@ namespace EntityFrameworkCodeFirst.Core.Model
             this.Student = student;
             this.Date = date;
         }
-
     }
 }

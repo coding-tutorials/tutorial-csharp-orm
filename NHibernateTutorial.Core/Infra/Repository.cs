@@ -9,37 +9,52 @@ using FluentNHibernate.Automapping;
 
 namespace NHibernateTutorial.Core.Infra
 {
-    public class Repository<T>
+    public class Repository<T> : ORMTutorial.Infra.IRepository<T>
     {
-        private IUnityOfWork unityOfWork;
+        private IUnityOfWork unitOfWork;
 
-        public Repository(IUnityOfWork unityOfWork)
+        public Repository(IUnityOfWork unitOfWork)
         {
-            this.unityOfWork = unityOfWork;
+            this.unitOfWork = unitOfWork;
         }
 
-        public T Save(T model)
+        public IEnumerable<T> GetWhere(Expression<Func<T, bool>> predicate)
         {
-            this.unityOfWork.GetSession().Save(model);
-            return model;
-        }
-
-        public IQueryable<T> GetWhere(Expression<Func<T, bool>> predicate)
-        {
-            return this.unityOfWork.GetSession().Query<T>()
+            return this.unitOfWork.GetSession().Query<T>()
                 .Where(predicate)
                 .Select(model => model);
         }
 
-        public IQueryable<T> GetAll()
+        public IEnumerable<T> GetAll()
         {
-            return this.unityOfWork.GetSession().Query<T>()
+            return this.unitOfWork.GetSession().Query<T>()
                 .Select(model => model);
         }
 
-        public void Delete(T model)
+        public T Save(T model, bool commit = true)
         {
-            this.unityOfWork.GetSession().Delete(model);
+            return this.Save(new List<T>(){model}, commit).First();
+        }
+
+        public IEnumerable<T> Save(IEnumerable<T> modelList, bool commit = true)
+        {
+            foreach(var model in modelList)
+                this.unitOfWork.GetSession().Save(model);
+            if (commit) this.unitOfWork.Commit();
+            return modelList;
+        }
+
+        public void Delete(T model, bool commit = true)
+        {
+            this.Delete(new List<T>() { model }, commit);
+        }
+
+        public void Delete(IEnumerable<T> modelList, bool commit = true)
+        {
+            //if (commit) this.unityOfWork.Begin();
+            foreach(var model in modelList)
+                this.unitOfWork.GetSession().Delete(model);
+            if (commit) this.unitOfWork.Commit();
         }
     }
 }

@@ -3,22 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateTutorial.Test", "NHibernateTutorial.Test\NHibernateTutorial.Test.csproj", "{3CF1EF49-8E66-4F72-B614-8563F26CBD28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORMTutorial.Test", "NHibernateTutorial.Test\ORMTutorial.Test.csproj", "{3CF1EF49-8E66-4F72-B614-8563F26CBD28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateTutorial.Core", "NHibernateTutorial.Core\NHibernateTutorial.Core.csproj", "{5957BC22-DF57-4201-A32F-C6DAB68799CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateTutorial", "NHibernateTutorial.Core\NHibernateTutorial.csproj", "{5957BC22-DF57-4201-A32F-C6DAB68799CB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql", "sql", "{1582A970-A9F0-41A2-BBBE-789E03634914}"
 	ProjectSection(SolutionItems) = preProject
 		mysql5.sql = mysql5.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCodeFirst.Test", "EntityFrameworkCodeFirst\EntityFrameworkCodeFirst.Test.csproj", "{98D1202D-8F79-4A53-B59C-640B0194B1A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework", "EntityFrameworkCodeFirst.Core\EntityFramework.csproj", "{1C05CF2D-FCF2-4085-A7A9-F31CB1F209A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCodeFirst.Core", "EntityFrameworkCodeFirst.Core\EntityFrameworkCodeFirst.Core.csproj", "{1C05CF2D-FCF2-4085-A7A9-F31CB1F209A5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkDatabaseFirst.Core", "EntityFrameworkDatabaseFirst.Core\EntityFrameworkDatabaseFirst.Core.csproj", "{DF40C2EF-FDC5-4201-B25B-D5D4D46C1223}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkDatabaseFirstTest", "EntityFrameworkDatabaseFirst.Test\EntityFrameworkDatabaseFirstTest.csproj", "{BC2BB918-A7E1-4C9F-959A-3ECDB8BAFF12}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORMTutorial", "Core\ORMTutorial.csproj", "{EFACB2BF-BAF6-48DC-91D3-0105089CBE51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,22 +30,14 @@ Global
 		{5957BC22-DF57-4201-A32F-C6DAB68799CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5957BC22-DF57-4201-A32F-C6DAB68799CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5957BC22-DF57-4201-A32F-C6DAB68799CB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{98D1202D-8F79-4A53-B59C-640B0194B1A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98D1202D-8F79-4A53-B59C-640B0194B1A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98D1202D-8F79-4A53-B59C-640B0194B1A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98D1202D-8F79-4A53-B59C-640B0194B1A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1C05CF2D-FCF2-4085-A7A9-F31CB1F209A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1C05CF2D-FCF2-4085-A7A9-F31CB1F209A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C05CF2D-FCF2-4085-A7A9-F31CB1F209A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C05CF2D-FCF2-4085-A7A9-F31CB1F209A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF40C2EF-FDC5-4201-B25B-D5D4D46C1223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF40C2EF-FDC5-4201-B25B-D5D4D46C1223}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF40C2EF-FDC5-4201-B25B-D5D4D46C1223}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF40C2EF-FDC5-4201-B25B-D5D4D46C1223}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BC2BB918-A7E1-4C9F-959A-3ECDB8BAFF12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC2BB918-A7E1-4C9F-959A-3ECDB8BAFF12}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC2BB918-A7E1-4C9F-959A-3ECDB8BAFF12}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC2BB918-A7E1-4C9F-959A-3ECDB8BAFF12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFACB2BF-BAF6-48DC-91D3-0105089CBE51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFACB2BF-BAF6-48DC-91D3-0105089CBE51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFACB2BF-BAF6-48DC-91D3-0105089CBE51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFACB2BF-BAF6-48DC-91D3-0105089CBE51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

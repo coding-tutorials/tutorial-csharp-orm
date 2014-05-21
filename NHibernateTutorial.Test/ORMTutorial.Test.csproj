@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NHibernateTutorial.Test</RootNamespace>
-    <AssemblyName>NHibernateTutorial.Test</AssemblyName>
+    <AssemblyName>ORMTutorial.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -81,9 +81,9 @@
     <Compile Include="TestHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NHibernateTutorial.Core\NHibernateTutorial.Core.csproj">
+    <ProjectReference Include="..\NHibernateTutorial.Core\NHibernateTutorial.csproj">
       <Project>{5957bc22-df57-4201-a32f-c6dab68799cb}</Project>
-      <Name>NHibernateTutorial.Core</Name>
+      <Name>NHibernateTutorial</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

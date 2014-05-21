@@ -83,9 +83,9 @@
     <Compile Include="StudentTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EntityFrameworkCodeFirst.Core\EntityFrameworkCodeFirst.Core.csproj">
+    <ProjectReference Include="..\EntityFrameworkCodeFirst.Core\EntityFrameworkCodeFirst.csproj">
       <Project>{1c05cf2d-fcf2-4085-a7a9-f31cb1f209a5}</Project>
-      <Name>EntityFrameworkCodeFirst.Core</Name>
+      <Name>EntityFrameworkCodeFirst</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

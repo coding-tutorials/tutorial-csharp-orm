@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Data.Entity;
 
-namespace EntityFrameworkCodeFirst.Core.Infra
+namespace EntityFrameworkCodeFirst
 {
     public class DatabaseConnection : DropCreateDatabaseAlways<DbContext>, IDisposable
     {
@@ -28,9 +28,9 @@ namespace EntityFrameworkCodeFirst.Core.Infra
     {
         public EntityFrameworkContext() : base("schoolMySQL") {}
 
-        public DbSet<Model.Course> Courses {get;set;}
-        public DbSet<Model.Student> Students {get;set;}
-        public DbSet<Model.Enrollment> Enrollments {get;set;}
+        public DbSet<ORMTutorial.Model.Course> Courses {get;set;}
+        public DbSet<ORMTutorial.Model.Student> Students { get; set; }
+        public DbSet<ORMTutorial.Model.Enrollment> Enrollments { get; set; }
 
         public void Dispose()
         {

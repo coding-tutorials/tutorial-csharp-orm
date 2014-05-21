@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using NHibernate;
-
-namespace NHibernateTutorial.Core.Infra
+namespace ORMTutorial.Infra
 {
     public interface IUnityOfWork
     {

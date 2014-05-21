@@ -11,36 +11,19 @@ namespace NHibernateTutorial.Test
 {
     public class TestHelper
     {
-        protected DatabaseConnection database = new DatabaseConnection();
-
         protected Course CreateGenericCourse()
         {
-            Course course = null;
-
-            using (var unityOfWork = new UnityOfWork())
-            {
-                Repository<Course> courseRepository = new Repository<Course>(unityOfWork);
-                course = new Course("Test Course");
-                unityOfWork.Begin();
-                courseRepository.Save(course);
-                unityOfWork.Commit();
-            }
-
+            Repository<Course> courseRepository = new Repository<Course>(new UnityOfWork());
+            var course = new Course("Test Course");
+            courseRepository.Save(course);
             return course;
         }
 
         protected Student CreateGenericStudent()
         {
-            Student student = null;
-
-            using (var unityOfWork = new UnityOfWork())
-            {
-                Repository<Student> courseRepository = new Repository<Student>(unityOfWork);
-                student = new Student("Test Student");
-                courseRepository.Save(student);
-                unityOfWork.Commit();
-            }
-
+            Repository<Student> courseRepository = new Repository<Student>(new UnityOfWork());
+            var student = new Student("Test Student");
+            courseRepository.Save(student);
             return student;
         }
 

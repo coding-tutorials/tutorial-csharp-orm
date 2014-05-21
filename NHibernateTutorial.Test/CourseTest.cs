@@ -15,16 +15,9 @@ namespace NHibernateTutorial.Test
         [TestInitialize]
         public void Initialize()
         {
-            using (var unityOfWork = new UnityOfWork())
-            {
-                Repository<Course> courseRepository = new Repository<Course>(unityOfWork);
-                var courseList = courseRepository.GetAll();
-
-                foreach (var course in courseList)
-                    courseRepository.Delete(course);
-
-                unityOfWork.Commit();
-            }
+            Repository<Course> courseRepository = new Repository<Course>(new UnityOfWork());
+            var courseList = courseRepository.GetAll();
+            courseRepository.Delete(courseList);
         }
 
         [TestMethod]
@@ -37,22 +30,16 @@ namespace NHibernateTutorial.Test
         [TestMethod]
         public void CourseEdit()
         {
-            using (var unityOfWork = new UnityOfWork())
-            {
-                var course = this.CreateGenericCourse();
+            
+            var course = this.CreateGenericCourse();
 
-                Repository<Course> courseRepository = new Repository<Course>(unityOfWork);
-                var courseEdit = courseRepository.GetWhere(c => c.Id == course.Id).First();
-                courseEdit.Name = "Physics";
-                unityOfWork.Begin();
-                courseRepository.Save(courseEdit);
-                unityOfWork.Commit();
+            Repository<Course> courseRepository = new Repository<Course>(new UnityOfWork());
+            var courseEdit = courseRepository.GetWhere(c => c.Id == course.Id).First();
+            courseEdit.Name = "Physics";
+            courseRepository.Save(courseEdit);
 
-                unityOfWork.Begin();
-                var checkEditedCourse = courseRepository.GetWhere(c => c.Id == courseEdit.Id).First();
-                checkEditedCourse.Should().NotBe(course.Name);
-                unityOfWork.Commit();
-            }
+            var checkEditedCourse = courseRepository.GetWhere(c => c.Id == courseEdit.Id).First();
+            checkEditedCourse.Should().NotBe(course.Name);
         }
 
   
@@ -67,24 +54,28 @@ namespace NHibernateTutorial.Test
                 Repository<Course> courseRepository = new Repository<Course>(unityOfWork);
                 Repository<Student> studentRepository = new Repository<Student>(unityOfWork);
 
-                unityOfWork.Begin();
                 student = new Student("Newbie student");
-                studentRepository.Save(student);
-                course = new Course("French");
-                course.Students.Add(student);
-                courseRepository.Save(course);
-                unityOfWork.Commit();
+                //student.Courses.Add(course);
+                studentRepository.Save(student, false);
 
+                unityOfWork.Commit();
             }
 
             using (var unityOfWork = new UnityOfWork())
             {
-                //unityOfWork.Begin();
+                Repository<Course> courseRepository = new Repository<Course>(unityOfWork);
                 Repository<Student> studentRepository = new Repository<Student>(unityOfWork);
-                var searchStudent = studentRepository.GetWhere(x => x.Id == student.Id).First();
-                searchStudent.Courses.First().Id.Should().Be(course.Id);
-               // unityOfWork.Commit();
+
+                course = new Course("French");
+                course.Students.Add(student);
+                courseRepository.Save(course, false);
+
+                unityOfWork.Commit();
             }
+
+            Repository<Student> studentRepository2 = new Repository<Student>(new UnityOfWork());
+            var searchStudent = studentRepository2.GetWhere(x => x.Id == student.Id).First();
+            searchStudent.Courses.First().Id.Should().Be(course.Id);
         }
 
         [TestMethod]
@@ -102,11 +93,8 @@ namespace NHibernateTutorial.Test
                 var course = new Course("French");
                 course.Students.Add(student);
 
-                unityOfWork.Begin();
                 courseRepository.Save(course);
-                unityOfWork.Commit();
-
-                unityOfWork.Begin();
+    
                 courseRepository.Delete(course);
                 unityOfWork.Commit();
 
